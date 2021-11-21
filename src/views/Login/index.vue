@@ -98,12 +98,18 @@ const handleLogin = () => {
     }
     // console.log('请求后台执行登录')
     // 验证通过执行登录逻辑 调用定义好的actions
-    store.dispatch('user/login', loginForm.value).then((res) => {
-      // 只有在登录成功的情况下执行跳转
-      router.push({
-        name: 'Index'
+    store
+      .dispatch('user/login', loginForm.value)
+      .then((res) => {
+        // 只有在登录成功的情况下执行跳转
+        router.push({
+          path: '/'
+        })
+        // console.log(res)
       })
-    })
+      .catch((res) => {
+        console.log(res)
+      })
   })
 }
 </script>
