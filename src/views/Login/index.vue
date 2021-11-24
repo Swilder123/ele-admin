@@ -1,3 +1,4 @@
+<!-- 登录界面 -->
 <template>
   <div class="login-container">
     <el-form
@@ -24,7 +25,7 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon iconName="mima" />
+          <svg-icon iconName="password" />
         </span>
         <el-input
           placeholder="username"
@@ -34,7 +35,7 @@
         ></el-input>
 
         <span class="svg-container" @click="toggleIcon">
-          <svg-icon :iconName="flag ? 'yincang' : 'xianshi_o'" />
+          <svg-icon :iconName="flag ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
 
@@ -55,6 +56,7 @@ import { passwordValidate } from './rule.js'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
+// 数据
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
@@ -64,15 +66,15 @@ const loginForm = ref({
 const loginRules = ref({
   username: [
     {
-      required: true,
-      trigger: 'blur',
+      required: true, // 必填
+      trigger: 'blur', // 失去焦点触发
       message: '账号必须填写'
     }
   ],
   password: [
     {
       trigger: 'blur',
-      validator: passwordValidate()
+      validator: passwordValidate() // 验证规则 调用函数rule.js
     }
   ]
 })
@@ -83,7 +85,7 @@ const toggleIcon = () => {
   flag.value = !flag.value
 }
 
-// 怎么引用dom
+// 怎么引用dom   ref="loginRef"  如果是组件，拿到的是组件对象 如果是标签，拿到对应的标签
 const loginRef = ref(null)
 
 // 登录逻辑
@@ -97,9 +99,13 @@ const handleLogin = () => {
       return // 一个规则没有通过
     }
     // console.log('请求后台执行登录')
+    // console.log(loginRef.value)
     // 验证通过执行登录逻辑 调用定义好的actions
+    /*
+    1. store.dispatch('user/login', loginForm.value)发送请求，放到vuex下面的user.js中actions去发送，actions不会亲自发送，他会去调用api中的user.js中的方法去发送，但是也不是直接导入axios包来发送，而是借助公共函数库导出的一个axios对象request.js,导出之后在任何地方使用都可以使用，request.js中的数据都是公共的
+     */
     store
-      .dispatch('user/login', loginForm.value)
+      .dispatch('user/login', loginForm.value) // 调用user.js下面的actions中的login
       .then((res) => {
         // 只有在登录成功的情况下执行跳转
         router.push({
@@ -168,7 +174,7 @@ $cursor: #fff;
     }
 
     .svg-container {
-      padding: 6px 5px 5px 15px;
+      padding: 6px 5px 5px 9px;
       color: $dark_gray;
       vertical-align: middle;
       display: inline-block;

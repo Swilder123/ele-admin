@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import installElementPlus from './plugins/element'
+import installElementPlus from './plugins/element' // 引入plugins中的文件
 
 // 引入样式的主入口文件
 import './styles/index.scss'
@@ -19,9 +19,23 @@ initSvgIcon(app)
 app.use(store).use(router).mount('#app')
 /* eslint-disable */
 
+/*项目目录：
+plugins: 所有的插件
+utils: 指的是公共的函数库
+
+
+*/
+
+
+
+
+
+
+
+
 // 入口main.js(导入模块：js模块) -->webpack   出口js/app.js 文件
 
-// 【css，文件，字体，svg】 -->loader -->对应的js模块   -->webpack
+// 【css，文件，字体，svg】 -->lo ader -->对应的js模块   -->webpack
 
 //不需要配置，直接使用，因为项目环境已经直接配置了常见的loader
 

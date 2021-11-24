@@ -85,7 +85,7 @@ html, body {
 }
 
 #app .sidebar-container .horizontal-collapse-transition {
-  transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+  transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
 }
 
 #app .sidebar-container .scrollbar-wrapper {
@@ -165,10 +165,6 @@ html, body {
 
 #app .hideSidebar .el-submenu {
   overflow: hidden;
-}
-
-#app .hideSidebar .el-submenu > .el-submenu__title {
-  padding: 0 !important;
 }
 
 #app .hideSidebar .el-submenu > .el-submenu__title .svg-icon {

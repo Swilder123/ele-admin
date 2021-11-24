@@ -1,4 +1,5 @@
-// 存储数据
+// 本地存储公共的文件
+// 存储数据 token
 export const setItem = (key, value) => {
   if (typeof value === 'object') {
     value = JSON.stringify(value)

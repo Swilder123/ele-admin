@@ -1,3 +1,4 @@
+// 配置webpack
 //node 加载的 commonjs
 //导出一个配置对象 .作为webpack的配置
 const path = require('path') // 导入node 一个默认模块  解析目录相关
@@ -14,14 +15,15 @@ module.exports = {
 
     //1 . 获取webpack 对svg 的解析的loader,并且忽略那个目录
     config.module.rule('svg').exclude.add(getPath('src/icons/svg')).end()
+    // exclude 除了哪个目录
 
     //3.配置新的loader 对svg的解析
 
     // 处理什么类型的文件
     config.module
       .rule('icons') // 新增一个名字叫icons的rule规则
-      .test(/\.svg$/) // 解析什么文件
-      .include.add(getPath('src/icons/svg')) // 处理那个目录下
+      .test(/\.svg$/) // 解析什么样的文件，以.svg结尾的
+      .include.add(getPath('src/icons/svg')) // 处理哪个目录下
       .end() //返回上一层
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')

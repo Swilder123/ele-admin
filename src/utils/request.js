@@ -1,3 +1,4 @@
+// 请求的操作
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { inCheckTimeOut } from './auth.js'
@@ -8,7 +9,7 @@ import store from '@/store/index.js' // router useRote useRouter
 const server = axios.create({
   // 后台代理+ cros
 
-  timeout: 5000,
+  timeout: 5000, // axios 的超时时间
   baseURL: '/api'
 })
 
@@ -38,8 +39,9 @@ server.interceptors.request.use(
 // 错误处理 服务区返错误 消息提醒
 server.interceptors.response.use(
   (response) => {
-    // 对响应数据做点什么
+    // 对响应数据做点什么 对的数据 错的数据
     const { success, data, message } = response.data
+    // console.log(response.data)
     if (success) {
       return data
     } else {

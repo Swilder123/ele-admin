@@ -1,3 +1,4 @@
+// 用户登录的操作
 import { login, getUserInfo } from '@/api/user.js'
 import md5 from 'md5'
 import * as utils from '@/utils/storage.js'
@@ -68,6 +69,7 @@ const actions = {
 
 export default {
   namespaced: true,
+  // namespaced: true使其成为带命名空间的模块，如果不使用namespaced的时候默认是注册到全局的
   state,
   getters,
   mutations,
