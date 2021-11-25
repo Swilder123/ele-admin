@@ -8,7 +8,8 @@
       ref="loginRef"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <SelectLang class="select-lang" />
       </div>
 
       <el-form-item prop="username">
@@ -44,31 +45,35 @@
         style="width: 100%; margin-top: 30px"
         @click="handleLogin"
       >
-        登录 {{ store.state.user.token }}
+        {{ $t('msg.login.loginBtn') }}
       </el-button>
+      <!-- 账号tips -->
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { passwordValidate } from './rule.js'
+import { ref, watch } from 'vue'
+import { passwordValidate, usernameValidate } from './rule.js'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import SelectLang from '@/components/SelectLang/index.vue'
 
-// 数据
+// 表单数据
 const loginForm = ref({
   username: 'super-admin',
   password: '123456'
 })
 
-// 表单验证
+// 表单验证逻辑
 const loginRules = ref({
   username: [
     {
       required: true, // 必填
       trigger: 'blur', // 失去焦点触发
-      message: '账号必须填写'
+      // message: i18n.t('msg.login.usernameRule') // 不具备响应式
+      validator: usernameValidate()
     }
   ],
   password: [
@@ -118,6 +123,18 @@ const handleLogin = () => {
       })
   })
 }
+
+// 监听 getters.language 的变化  重新触发验证规则
+watch(
+  () => store.getters.language,
+  (newValue, oldValue) => {
+    // console.log('newValue', newValue)
+    // console.log('oldValue', oldValue)
+    // 中英文切换了 验证重新执行
+    loginRef.value.validateField('username')
+    loginRef.value.validateField('password')
+  }
+)
 </script>
 <style lang="scss" scoped>
 $bg: #2d3a4b;
@@ -140,6 +157,15 @@ $cursor: #fff;
       margin: 0px auto 40px auto;
       text-align: center;
       font-weight: bold;
+    }
+    :deep(.select-lang) {
+      position: absolute;
+      top: 4px;
+      right: 0px;
+      background-color: white;
+      font-size: 24px;
+      border-radius: 4px;
+      cursor: pointer;
     }
   }
 
@@ -178,6 +204,13 @@ $cursor: #fff;
       color: $dark_gray;
       vertical-align: middle;
       display: inline-block;
+    }
+
+    .tips {
+      font-size: 14px;
+      line-height: 28px;
+      color: #fff;
+      margin-bottom: 10px;
     }
   }
 }

@@ -13,10 +13,13 @@ import initSvgIcon from './icons/index.js'
 // 用户鉴权
 import './permissio.js'
 
+// 导入 i18n
+import i18n from '@/i18n/index.js'
+
 const app = createApp(App)
 installElementPlus(app)
 initSvgIcon(app)
-app.use(store).use(router).mount('#app')
+app.use(store).use(router).use(i18n).mount('#app')
 /* eslint-disable */
 
 /*项目目录：
@@ -25,13 +28,6 @@ utils: 指的是公共的函数库
 
 
 */
-
-
-
-
-
-
-
 
 // 入口main.js(导入模块：js模块) -->webpack   出口js/app.js 文件
 
@@ -156,6 +152,25 @@ utils: 指的是公共的函数库
 
     3.根据获取的路由对象 遍历输出对应的菜单   
 
+
+*/
+
+/*
+  中英文切换（国际化）
+    1.需要一个变量 locale 控制语言环境
+    2.所有的语言中的数据源要事先准备好
+    3.定义一个方法获取对应语言包中的数据
+
+
+    借助 i18n 插件完成 国际化
+    1.下载 i18n
+      npm install vue-i18n@next  // 因为项目中vue3.2 版本 保证 i18n 必须 > "9.0.0-"
+    2.
+
+
+    // 模板里面是 $t()
+    // vue组件里面 t()
+    // js里面是 globol.t()
 
 */
 
