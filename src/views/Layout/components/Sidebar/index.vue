@@ -32,12 +32,13 @@ const store = useStore()
     --el-avatar-background-color: none;
   }
 
-  .logo-title{
+  .logo-title {
     margin-left: 10px;
     color: #fff;
     font-weight: 600;
     line-height: 50px;
-    font-size: nowrap;
+    font-size: 16px;
+    white-space: nowrap;
   }
 }
 </style>

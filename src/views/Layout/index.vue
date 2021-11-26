@@ -7,7 +7,7 @@
     <Sidebar
       id="guide-sidebar"
       class="sidebar-container"
-      :style="{ backgroundColor: variables.menuBg }"
+      :style="{ backgroundColor: store.getters.cssVar.menuBg }"
     />
     <!-- 右边 -->
     <div class="main-container">
@@ -24,7 +24,6 @@ import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar/index.vue'
 import Appmain from './components/Appmain/index.vue'
 
-import variables from '@/styles/variables.scss'
 import { useStore } from 'vuex'
 const store = useStore()
 </script>
@@ -38,10 +37,10 @@ const store = useStore()
   height: 100%;
   width: 100%;
 }
-.sidebar-container {
-  width: $sideBarWidth;
-  height: 100vh;
-}
+// .sidebar-container {
+//   width: $sideBarWidth;
+//   height: 100vh;
+// }
 
 .fixed-header {
   position: fixed;

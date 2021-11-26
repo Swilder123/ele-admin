@@ -5,7 +5,7 @@ import Login from '../views/Login/index.vue'
 const PrivateRoutes = [
   {
     path: '/user',
-    component: () => import('@/views/Layout/index'),
+    component: () => import('@/views/Layout/index.vue'),
     redirect: '/user/manage',
     meta: {
       title: 'user',
@@ -56,7 +56,7 @@ const PrivateRoutes = [
   },
   {
     path: '/article',
-    component: () => import('@/views/Layout/index'),
+    component: () => import('@/views/Layout/index.vue'),
     redirect: '/article/ranking',
     meta: {
       title: 'article',

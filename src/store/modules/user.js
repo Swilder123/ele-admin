@@ -8,7 +8,7 @@ import { setTimeStamp } from '@/utils/auth.js'
 
 const state = {
   token: utils.getItem(TOKEN) || '',
-  userInfo: {}
+  userInfo: utils.getItem(USER_INFO) || []
 }
 const getters = {}
 const mutations = {

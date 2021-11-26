@@ -34,7 +34,7 @@ const getClassName = computed(() => {
 <style lang="scss" scoped>
 .defaultSvgClass {
   width: 1em;
-  height: 1em;
+  height: 1rem;
   fill: currentColor;
   vertical-align: -0.15em;
   overflow: hidden;

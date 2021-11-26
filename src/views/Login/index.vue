@@ -185,7 +185,7 @@ $cursor: #fff;
 
       .el-input {
         height: 47px;
-        width: 85%;
+        width: 80%;
       }
 
       .el-input__inner {
@@ -200,7 +200,7 @@ $cursor: #fff;
     }
 
     .svg-container {
-      padding: 6px 5px 5px 9px;
+      padding: 6px 5px 5px 15px;
       color: $dark_gray;
       vertical-align: middle;
       display: inline-block;

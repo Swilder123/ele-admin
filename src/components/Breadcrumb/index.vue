@@ -1,6 +1,6 @@
 <template>
   <el-breadcrumb class="breadcrumb" separator="/">
-    <transition-group name="list" tag="span">
+    <transition-group name="list">
       <el-breadcrumb-item
         v-for="(item, index) in breadcrumbData"
         :key="item.path"

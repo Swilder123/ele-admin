@@ -3,7 +3,7 @@
   <el-menu
     :background-color="store.getters.cssVar.menuBg"
     :text-color="store.getters.cssVar.menuText"
-    :active-text-color="store.getters.cssVar.mennActiveText"
+    :active-text-color="store.getters.cssVar.menuActiveText"
     :unique-opened="true"
     :default-active="activePath"
     :router="true"
@@ -43,4 +43,11 @@ const activePath = computed(() => {
 // console.log(routes.value)
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+:deep(.el-sub-menu__title) {
+  display: block !important;
+}
+:deep(.el-menu-item) {
+  display: block !important;
+}
+</style>

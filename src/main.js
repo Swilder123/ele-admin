@@ -1,8 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 import router from './router'
 import store from './store'
-import installElementPlus from './plugins/element' // 引入plugins中的文件
 
 // 引入样式的主入口文件
 import './styles/index.scss'
@@ -17,7 +18,7 @@ import './permissio.js'
 import i18n from '@/i18n/index.js'
 
 const app = createApp(App)
-installElementPlus(app)
+app.use(ElementPlus)
 initSvgIcon(app)
 app.use(store).use(router).use(i18n).mount('#app')
 /* eslint-disable */

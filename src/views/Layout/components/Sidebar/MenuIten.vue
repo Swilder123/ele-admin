@@ -31,4 +31,5 @@ defineProps({
   margin-right: 10px;
   margin-left: 3px;
 }
+
 </style>
