@@ -1,5 +1,6 @@
 // 在js中可以直接引入node的模块但是在.vue中是引入不了的
 import path from 'path'
+import i18n from '@/i18n/index.js'
 /*
   1.去除重复的二级路由，保持一二级路由的层级关系
 */
@@ -70,4 +71,39 @@ export function generateMenus(routes, basePath = '') {
     }
   })
   return result
+}
+
+/*
+  3.配合fuse.js 处理路由数据源 满足fuse.js的搜索方式
+  @param routes 是filter 过滤去重以后的路由
+*/
+export const generateFuse = (routes, titles = []) => {
+  let res = []
+  // 遍历 routes
+  for (const route of routes) {
+    // 遍历第一个路由
+    const data = {
+      path: route.path,
+      // 不迭代的话这里是个空title 如果多迭代 这里就是以后的以一级标题的title
+      title: [...titles] // 此时这里是个空数组
+    }
+    // 条件： 1.具备meta && meta.title   2.过滤掉动态路由 /:id
+    const reg = /.*\/:.*/
+    // 过滤之后满足条件
+    if (route.meta && route.meta.title && !reg.exec(route.path)) {
+      // 变成国际化
+      const title = i18n.global.t('msg.route.' + route.meta.title)
+      data.title = [...data.title, title] // ...data.title 空的   route.meta.title 添加了一级标题，自身的
+      res.push(data)
+    }
+    // 如果一级里面有二级就执行这里
+    if (route.children && route.children.length > 0) {
+      const subRes = generateFuse(route.children, data.title) // data.title这里的是一级标题
+      if (subRes.length > 0) {
+        res = [...res, ...subRes]
+      }
+    }
+  }
+
+  return res
 }
