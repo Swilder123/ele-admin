@@ -76,7 +76,7 @@ const onSelectChange = (value) => {
   search.value = value.title.join('>')
   // 跳转
   router.push(value.path)
-  console.log('选中option ', value)
+  // console.log('选中option ', value)
 }
 
 // 准备数据源
@@ -109,7 +109,7 @@ const initFuse = (list) => {
   })
 }
 initFuse(list.value) // list 数据源
-console.log(fuse)
+// console.log(fuse)
 
 // 监听onguage的切换动作
 watchLang((lang) => {

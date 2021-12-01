@@ -17,5 +17,6 @@ export default {
   },
   sideBarOpen: (state) => state.app.sideBarOpened,
   language: (state) => state.app.language, // 中英文的
-  theme_color: (state) => state.theme.myColor // 背景色的
+  theme_color: (state) => state.theme.myColor, // 背景色的
+  tagViewList: (state) => state.tag.tagViewList
 }
