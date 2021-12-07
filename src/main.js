@@ -17,9 +17,13 @@ import './permissio.js'
 // 导入 i18n
 import i18n from '@/i18n/index.js'
 
+// 注册全局属性
+import initFilters from '@/filters/index.js'
+
 const app = createApp(App)
 app.use(ElementPlus)
 initSvgIcon(app)
+initFilters(app)
 app.use(store).use(router).use(i18n).mount('#app')
 /* eslint-disable */
 

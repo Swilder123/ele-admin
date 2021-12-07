@@ -9,7 +9,7 @@ import store from '@/store/index.js' // router useRote useRouter
 const server = axios.create({
   // 后台代理+ cros
 
-  timeout: 5000, // axios 的超时时间
+  timeout: 50000, // axios 的超时时间
   baseURL: '/api'
 })
 

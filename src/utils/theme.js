@@ -29,6 +29,7 @@ export const generateNewStyle = async (primary) => {
   return newStyle
 }
 
+// 一种方法 version
 const getOriginalStyle = async () => {
   // 利用这个方法去请求接口来获取element的样式
   const version = require('element-plus/package.json').version // element-plus/package.json 拿到版本号
@@ -36,6 +37,12 @@ const getOriginalStyle = async () => {
   const { data } = await axios.get(url) // 利用 data 来解构结果里面的数据
   return data
 }
+// 二种方法 固定element-plus
+// const getOriginalStyle = async () => {
+//   const url = `http://localhost:8080/element-plus.css`
+//   const { data } = await axios.get(url) // 利用 data 来解构结果里面的数据
+//   return data
+// }
 
 const getStyleTemplate = (Style) => {
   // key 就是 colorMap 中的每一项颜色
