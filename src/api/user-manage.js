@@ -34,3 +34,11 @@ export const deleteUserById = (id) => {
     method: 'GET'
   })
 }
+
+// 用户详情
+export const userDetailById = (id) => {
+  return axios.request({
+    url: `/user-manage/detail/${id}`,
+    method: 'GET'
+  })
+}

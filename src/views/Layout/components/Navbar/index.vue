@@ -57,6 +57,7 @@ const logout = () => {
   position: relative;
   background-color: #fff;
   border-radius: 0px 1px 4px rgba(0, 21, 41, 0.08);
+  border-bottom: 1px solid #d8dce5;
 
   .right-menu {
     display: flex;

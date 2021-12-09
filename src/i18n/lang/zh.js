@@ -154,7 +154,9 @@ export default {
     dialogTitle: '新增角色',
     dialogRole: '角色名称',
     dialogDesc: '角色描述',
-    updateRoleSuccess: '用户角色更新成功'
+    updateRoleSuccess: '用户角色更新成功',
+    toggleTitle1: '全部展开',
+    toggleTitle2: '全部收起'
   },
   permission: {
     name: '权限名称',

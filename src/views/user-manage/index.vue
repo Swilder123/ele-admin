@@ -66,9 +66,12 @@
           width="300px"
         >
           <template #default="{ row }">
-            <el-button size="mini" type="success">{{
-              $t('msg.excel.show')
-            }}</el-button>
+            <el-button
+              size="mini"
+              type="success"
+              @click="showUserDetail(row)"
+              >{{ $t('msg.excel.show') }}</el-button
+            >
             <el-button size="mini" type="primary">{{
               $t('msg.excel.showRole')
             }}</el-button>
@@ -247,6 +250,12 @@ const removeData = (row) => {
     getManageUser() // 改变一次就请求一次
   })
 }
+
+// 跳转详情
+const showUserDetail = (row) => {
+  router.push({ path: '/user/info/' + row._id })
+}
+
 // 监听语言变化
 watchLang((lang) => {
   filename.value = i18n.t('msg.excel.defaultName')

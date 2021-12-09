@@ -155,7 +155,9 @@ export default {
     dialogTitle: 'New role',
     dialogRole: 'Role Name',
     dialogDesc: 'Role description',
-    updateRoleSuccess: 'User role updated successfully'
+    updateRoleSuccess: 'User role updated successfully',
+    toggleTitle1: 'show',
+    toggleTitle2: 'hide'
   },
   permission: {
     name: 'Authority name',
