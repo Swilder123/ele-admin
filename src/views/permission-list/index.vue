@@ -47,7 +47,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import { getArrPermissions } from '@/api/permission.js'
+import { getAllPermissions } from '@/api/permission.js'
 import { useStore } from 'vuex'
 
 const store = useStore()
@@ -64,17 +64,11 @@ const permissionData = ref([])
   ]
 */
 const initPermission = async () => {
-  const data = await getArrPermissions()
+  const data = await getAllPermissions()
   permissionData.value = data
-  // console.log(data)
+  // console.log(data, '000000000')
 }
 initPermission()
-
-// 修改 二级菜单的背景
-const childrenBgColor = ref(store.getters.cssVar['light-6'])
-
-// 修改 hover 状态的背景
-const hoverBgColor = ref(store.getters.cssVar['light-3'])
 
 // 全部展开和收起二级菜单
 const isShowChildren = ref(false)
@@ -87,6 +81,11 @@ const toggle = () => {
   })
 }
 
+// 修改 二级菜单的背景
+const childrenBgColor = ref(store.getters.cssVar['light-6'])
+// 修改 hover 状态的背景
+const hoverBgColor = ref(store.getters.cssVar['light-3'])
+
 // 监听主题切换
 watch(
   () => {
@@ -95,6 +94,16 @@ watch(
   () => {
     childrenBgColor.value = store.getters.cssVar['light-6']
     hoverBgColor.value = store.getters.cssVar['light-3']
+  }
+)
+
+// 如果语言切换了 重新请求接口
+watch(
+  () => {
+    return store.getters.language
+  },
+  () => {
+    initPermission()
   }
 )
 </script>
@@ -107,7 +116,7 @@ watch(
 :deep(.el-table__body tr:hover > td) {
   background-color: v-bind(hoverBgColor) !important;
   color: #fff;
-  // transition: all ease;
+  transition: all ease;
 }
 .toggle {
   text-align: right;

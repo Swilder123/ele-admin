@@ -4,7 +4,7 @@ import { MYCOLOR } from '@/common/common.js'
 export default {
   namespaced: true,
   state: {
-    myColor: getItem(MYCOLOR) || '#cccccc' // 默认颜色
+    myColor: getItem(MYCOLOR) || 'blue' // 默认颜色
   },
   mutations: {
     // 设置主题色

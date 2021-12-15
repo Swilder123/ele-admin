@@ -47,10 +47,14 @@ const actions = {
         })
     })
   },
-  logout({ commit }) {
+  logout(context) {
     // 清理用户数据
-    commit('setToken', '')
-    commit('setUserInfo', {})
+    context.commit('setToken', '')
+    context.commit('setUserInfo', {})
+    console.log(context)
+    context.dispatch('roleAndPermission/clearRoleAndPermission', null, {
+      root: true
+    })
     // 跳转到登录页面
     router.push('/login')
   },

@@ -3,7 +3,7 @@ import { getItem, setItem } from '@/utils/storage.js' // 到入进行本地存�
 
 const state = {
   sideBarOpened: true,
-  language: getItem(LANGUAGE) || ''
+  language: getItem(LANGUAGE) || 'en'
 }
 
 const mutations = {

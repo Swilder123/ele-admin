@@ -71,3 +71,7 @@ export const colorTables = {
   menuHover: 'color(primary tint(90%))',
   menuBg: 'color(primary)'
 }
+
+export const ROLE = 'roles'
+export const PERMISSION = 'permissions'
+export const PERMISSION_ = 'permissions_'
