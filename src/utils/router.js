@@ -37,6 +37,7 @@ const isNull = (data) => {
   return false
 }
 export function generateMenus(routes, basePath = '') {
+  // console.log('@@@@........', routes)
   const result = []
   // 遍历路由表
   routes.forEach((item) => {

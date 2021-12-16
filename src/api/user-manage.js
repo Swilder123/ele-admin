@@ -42,3 +42,22 @@ export const userDetailById = (id) => {
     method: 'GET'
   })
 }
+
+// 获取用户的默认角色
+export const getRolesByUserid = (userId) => {
+  return axios.request({
+    url: '/user-manage/role/' + userId,
+    method: 'GET'
+  })
+}
+
+// 修改用户角色
+export const updateRole = (data) => {
+  return axios.request({
+    url: '/user-manage/update-role/' + data.userId,
+    method: 'POST',
+    data: {
+      roles: data.roles
+    }
+  })
+}

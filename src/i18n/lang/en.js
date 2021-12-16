@@ -127,7 +127,7 @@ export default {
     action: 'Operate',
     show: 'Check',
     showRole: 'Role',
-    defaultRole: 'Staff',
+    defaultRole: 'No Role',
     remove: 'delete',
     removeSuccess: 'Deleted successfully',
     title: 'Export to excel',

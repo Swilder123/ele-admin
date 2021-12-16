@@ -5,6 +5,7 @@ import app from './modules/app.js'
 import theme from './modules/theme.js'
 import tag from './modules/tag.js'
 import roleAndPermission from './modules/role&permission.js'
+import userPermission from './modules/userPermission.js'
 
 export default createStore({
   getters,
@@ -13,6 +14,7 @@ export default createStore({
     app,
     theme,
     tag,
-    roleAndPermission
+    roleAndPermission,
+    userPermission
   }
 })

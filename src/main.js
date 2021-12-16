@@ -12,7 +12,7 @@ import './styles/index.scss'
 import initSvgIcon from './icons/index.js'
 
 // 用户鉴权
-import './permissio.js'
+import './permission.js'
 
 // 导入 i18n
 import i18n from '@/i18n/index.js'

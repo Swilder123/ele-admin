@@ -2,9 +2,12 @@
   <div class="user-manage-container">
     <el-card class="header">
       <!-- excel按钮 -->
-      <el-button type="primary" @click="onImportExcel">{{
-        $t('msg.excel.importExcel')
-      }}</el-button>
+      <el-button
+        type="primary"
+        @click="onImportExcel"
+        v-showPermission="'importUser'"
+        >{{ $t('msg.excel.importExcel') }}</el-button
+      >
       <el-button type="success" @click="onExportExcel">{{
         $t('msg.excel.exportExcel')
       }}</el-button>
@@ -44,9 +47,13 @@
         <el-table-column :label="$t('msg.excel.role')" align="center">
           <template #default="{ row }">
             <div v-if="row.role && row.role.length > 0">
-              <el-tag v-for="tag in row.role" :key="tag.id" size="mini">{{
-                tag.title
-              }}</el-tag>
+              <el-tag
+                style="margin-left: 10px"
+                v-for="tag in row.role"
+                :key="tag.id"
+                size="mini"
+                >{{ tag.title }}</el-tag
+              >
             </div>
             <div v-else>
               <el-tag size="mini">{{ $t('msg.excel.defaultRole') }}</el-tag>
@@ -72,12 +79,20 @@
               @click="showUserDetail(row)"
               >{{ $t('msg.excel.show') }}</el-button
             >
-            <el-button size="mini" type="primary">{{
-              $t('msg.excel.showRole')
-            }}</el-button>
-            <el-button size="mini" type="warning" @click="removeData(row)">{{
-              $t('msg.excel.remove')
-            }}</el-button>
+            <el-button
+              v-showPermission="'distributeRole'"
+              size="mini"
+              type="primary"
+              @click="showRole(row)"
+              >{{ $t('msg.excel.showRole') }}</el-button
+            >
+            <el-button
+              v-showPermission="'distributeRole'"
+              size="mini"
+              type="warning"
+              @click="removeData(row)"
+              >{{ $t('msg.excel.remove') }}</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -123,6 +138,14 @@
         ></el-option>
       </el-select>
     </ExportExcel>
+
+    <!-- 用户修改角色模态 -->
+    <EditUserRole
+      :isShowRoleDialog="isShowRoleDialog"
+      :userId="userId"
+      @close="closeRoleDialog"
+      @update="getManageUser"
+    />
   </div>
 </template>
 
@@ -136,6 +159,18 @@ import dateFilter from '@/filters/dateFilter.js'
 import { useI18n } from 'vue-i18n'
 import { watchLang } from '@/utils/i18n.js'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import EditUserRole from './components/EditUserRole.vue'
+
+// 角色相关
+const isShowRoleDialog = ref(false)
+const userId = ref('')
+const showRole = (row) => {
+  userId.value = row._id
+  isShowRoleDialog.value = true
+}
+const closeRoleDialog = () => {
+  isShowRoleDialog.value = false
+}
 
 // excel 相关数据定义
 const i18n = useI18n()
@@ -257,9 +292,14 @@ const showUserDetail = (row) => {
 }
 
 // 监听语言变化
-watchLang((lang) => {
-  filename.value = i18n.t('msg.excel.defaultName')
-})
+watchLang(
+  (lang) => {
+    filename.value = i18n.t('msg.excel.defaultName')
+  },
+  () => {
+    getManageUser() // 改变一次就请求一次
+  }
+)
 </script>
 
 <style lang="scss" scoped>
